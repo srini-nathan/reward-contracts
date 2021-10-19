@@ -1,0 +1,48 @@
+{
+  "name": "conveyor-v2",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "compile": "yarn hardhat compile",
+    "deploy": "yarn hardhat run scripts/deploy.ts",
+    "test": "yarn hardhat test",
+    "lint": "yarn lint:ts; yarn lint:sol",
+    "lint:ts": "eslint '*/**/*.{js,ts,tsx}'",
+    "lint:sol": "prettier -c 'contracts/**/*.sol'",
+    "lint-fix": "yarn lint-fix:ts; yarn lint-fix:sol",
+    "lint-fix:ts": "eslint '*/**/*.{js,ts,tsx}' --fix",
+    "lint-fix:sol": "prettier -w 'contracts/**/*.sol'",
+    "assign-owner": "yarn hardhat assign-owner"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@chainlink/contracts": "^0.2.1",
+    "@openzeppelin/contracts": "^4.2.0",
+    "@typechain/ethers-v5": "^7.0.1",
+    "@typechain/hardhat": "^2.3.0",
+    "@types/chai": "^4.2.22",
+    "@types/mocha": "^9.0.0",
+    "@types/node": "^16.10.3",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "@uniswap/sdk": "^3.0.3",
+    "chai": "^4.3.4",
+    "dotenv": "^10.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.4.4",
+    "hardhat": "^2.6.6",
+    "prettier": "^2.3.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.17",
+    "ts-node": "^10.2.1",
+    "typechain": "^5.1.2",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2"
+  }
+}
