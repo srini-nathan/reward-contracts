@@ -12,18 +12,7 @@ const mnemonic = 'system sure trial grape behind powder west panther strike resp
 
 const config: HardhatUserConfig = {
     solidity: {
-        compilers: [{ version: '0.8.2', settings: {} }],
-        overrides: {
-            "contracts/ConveyorV2Router01.sol" : {
-                version: '0.8.2',
-                settings: {
-                    optimizer: {
-                        enabled: true,
-                        runs: 200
-                    }
-                }
-            }
-        }
+        compilers: [{ version: '0.8.2', settings: {} }]
     },
 
     defaultNetwork: 'hardhat',

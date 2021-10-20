@@ -1,5 +1,5 @@
 {
-  "name": "conveyor-v2",
+  "name": "reward-contracts",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -11,8 +11,7 @@
     "lint:sol": "prettier -c 'contracts/**/*.sol'",
     "lint-fix": "yarn lint-fix:ts; yarn lint-fix:sol",
     "lint-fix:ts": "eslint '*/**/*.{js,ts,tsx}' --fix",
-    "lint-fix:sol": "prettier -w 'contracts/**/*.sol'",
-    "assign-owner": "yarn hardhat assign-owner"
+    "lint-fix:sol": "prettier -w 'contracts/**/*.sol'"
   },
   "keywords": [],
   "author": "",
@@ -25,14 +24,14 @@
     "@types/chai": "^4.2.22",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.10.3",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
     "@uniswap/sdk": "^3.0.3",
     "chai": "^4.3.4",
     "dotenv": "^10.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "ethereum-waffle": "^3.4.0",
     "ethers": "^5.4.4",
     "hardhat": "^2.6.6",
