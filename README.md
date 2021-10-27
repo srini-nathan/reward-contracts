@@ -4,7 +4,8 @@
 
 This repo contains the smart contract implementation for distributing rewards.
 
-`RewardPool.sol` is used for distributing ERC-20 tokens as rewards for staking ERC-20 tokens.
+* `RewardPool.sol` is used for distributing ERC-20 tokens as rewards for staking ERC-20 tokens.
+* `MultiRewardPool.sol` is an upgraded version of `RewardPool.sol` that can issue multiple ERC-20 rewards.
 
 ## Development
 
