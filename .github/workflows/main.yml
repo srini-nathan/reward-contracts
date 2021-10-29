@@ -87,8 +87,8 @@ jobs:
       - name: hardhat compile
         run: yarn hardhat compile
 
-      - name: hardhat deploy (bytecode matching)
-        run: yarn deploy
+#      - name: hardhat deploy (bytecode matching)
+#        run: yarn deploy
 
       - name: hardhat test
         run: yarn hardhat test
