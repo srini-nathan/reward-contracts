@@ -113,8 +113,8 @@ contract MultiRewardPool is ReentrancyGuard, Pausable, Ownable {
         require(amount > 0, "Cannot stake 0");
         _totalSupply = _totalSupply + amount;
         _balances[msg.sender] = _balances[msg.sender] + amount;
-        stakingToken.safeTransferFrom(msg.sender, address(this), amount);
         emit Staked(msg.sender, amount);
+        stakingToken.safeTransferFrom(msg.sender, address(this), amount);
     }
 
     /// @notice Unstake LP tokens from the pool.
@@ -122,19 +122,19 @@ contract MultiRewardPool is ReentrancyGuard, Pausable, Ownable {
         require(amount > 0, "Cannot withdraw 0");
         _totalSupply = _totalSupply - amount;
         _balances[msg.sender] = _balances[msg.sender] - amount;
-        stakingToken.safeTransfer(msg.sender, amount);
         emit Withdrawn(msg.sender, amount);
+        stakingToken.safeTransfer(msg.sender, amount);
     }
 
     /// @notice Transfers earned rewards to msg.sender
     function getReward() public nonReentrant updateReward(msg.sender) {
-        for (uint256 i; i < rewardTokens.length; i++) {
+        for (uint256 i = 0; i < rewardTokens.length; i++) {
             address _rewardsToken = rewardTokens[i];
             uint256 reward = rewards[msg.sender][_rewardsToken];
             if (reward > 0) {
                 rewards[msg.sender][_rewardsToken] = 0;
-                IERC20(_rewardsToken).safeTransfer(msg.sender, reward);
                 emit RewardPaid(msg.sender, _rewardsToken, reward);
+                IERC20(_rewardsToken).safeTransfer(msg.sender, reward);
             }
         }
     }
@@ -151,15 +151,13 @@ contract MultiRewardPool is ReentrancyGuard, Pausable, Ownable {
     /// @param _rewardsToken token address of the reward token
     /// @param reward Quantity of reward to be added the amount that needs to be distributed. Should not be more than what was topped up.
     function notifyRewardAmount(address _rewardsToken, uint256 reward) external updateReward(address(0)) {
+        // Checks
         require(
             rewardData[_rewardsToken].rewardsDistributor == msg.sender,
             "Caller not reward distributor for this token."
         );
 
-        // handle the transfer of reward tokens via `transferFrom` to reduce the number
-        // of transactions required and ensure correctness of the reward amount
-        IERC20(_rewardsToken).safeTransferFrom(msg.sender, address(this), reward);
-
+        // Effects
         if (block.timestamp >= rewardData[_rewardsToken].periodFinish) {
             rewardData[_rewardsToken].rewardRate = reward / rewardData[_rewardsToken].rewardsDuration;
         } else {
@@ -170,14 +168,19 @@ contract MultiRewardPool is ReentrancyGuard, Pausable, Ownable {
 
         rewardData[_rewardsToken].lastUpdateTime = block.timestamp;
         rewardData[_rewardsToken].periodFinish = block.timestamp + rewardData[_rewardsToken].rewardsDuration;
+
         emit RewardAdded(reward);
+        // handle the transfer of reward tokens via `transferFrom` to reduce the number
+        // of transactions required and ensure correctness of the reward amount
+        // Interactions
+        IERC20(_rewardsToken).safeTransferFrom(msg.sender, address(this), reward);
     }
 
     /// @notice Added to support recovering LP Rewards from other systems such as BAL to be distributed to holders
     function recoverERC20(address tokenAddress, uint256 tokenAmount) external onlyOwner {
         require(tokenAddress != address(stakingToken), "Cannot withdraw the staking token");
-        IERC20(tokenAddress).safeTransfer(owner(), tokenAmount);
         emit Recovered(tokenAddress, tokenAmount);
+        IERC20(tokenAddress).safeTransfer(owner(), tokenAmount);
     }
 
     /// @notice Call after reward duration is finished, and pool is inactive. Sets the next reward duration. Only callable by rewardDistributor for specific token
