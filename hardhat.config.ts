@@ -6,7 +6,7 @@ import '@typechain/hardhat';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const { ALCHEMY_API, DEPLOYER_PRIVATE_KEY, OWNER_PRIVATE_KEY } = process.env;
+const { ALCHEMY_API, DEPLOYER_PRIVATE_KEY, OWNER_PRIVATE_KEY, TEST_TOKEN_PROVIDER_PRIVATE_KEY, TEST_USER1, TEST_USER2, TEST_USER3, TEST_USER4 } = process.env;
 
 const mnemonic = 'system sure trial grape behind powder west panther strike response lunar follow'; // test mnenomic. DO NOT SEND REAL ETHERS TO THIS WALLET.
 
@@ -33,7 +33,8 @@ const config: HardhatUserConfig = {
             url: 'http://localhost:8545',
         },
         // bsc_tenderly: {
-        //     url: 'https://rpc.tenderly.co/fork/73a3fe43-9054-4606-842d-9f85a9bb3b12'
+        //     url: 'https://rpc.tenderly.co/fork/73a3fe43-9054-4606-842d-9f85a9bb3b12',
+        //     accounts: [OWNER_PRIVATE_KEY!, DEPLOYER_PRIVATE_KEY!, TEST_TOKEN_PROVIDER_PRIVATE_KEY!],
         // },
         // eth_tenderly: {
         //     url: 'https://rpc.tenderly.co/fork/4f3bf762-7876-49a4-92b1-ba5d92e1aaa6',
@@ -41,7 +42,9 @@ const config: HardhatUserConfig = {
         // },
         // matic_tenderly: {
         //     url: 'https://rpc.tenderly.co/fork/218abf8b-28c9-423b-a446-7d1bc8ad0587',
-        //     accounts: [OWNER_PRIVATE_KEY!, DEPLOYER_PRIVATE_KEY!],
+        //     accounts: [OWNER_PRIVATE_KEY!, DEPLOYER_PRIVATE_KEY!, TEST_TOKEN_PROVIDER_PRIVATE_KEY!, TEST_USER1!, TEST_USER2!, TEST_USER3!, TEST_USER4!],
+        //     gas: 2100000,
+        //     gasPrice: 8000000000
         // },
         // bsc: {
         //     url: 'https://bsc-dataseed1.defibit.io/',
