@@ -170,6 +170,11 @@ scenarioParameters.set('matic_tenderly', {
   reward1Address: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', // WMATIC
   reward2Address: '0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a', // SUSHI
 });
+scenarioParameters.set('matic_tenderly', {
+  stakingTokenAddress: '0xb97560c22a62b9ccb0ee941271300c073973d05a', // WBNB/USDC
+  reward1Address: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // WBNB
+  reward2Address: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC
+});
 
 /**
  * Usage:

@@ -34,7 +34,9 @@ const config: HardhatUserConfig = {
         },
         // bsc_tenderly: {
         //     url: 'https://rpc.tenderly.co/fork/73a3fe43-9054-4606-842d-9f85a9bb3b12',
-        //     accounts: [OWNER_PRIVATE_KEY!, DEPLOYER_PRIVATE_KEY!, TEST_TOKEN_PROVIDER_PRIVATE_KEY!],
+        //     accounts: [OWNER_PRIVATE_KEY!, DEPLOYER_PRIVATE_KEY!, TEST_TOKEN_PROVIDER_PRIVATE_KEY!, TEST_USER1!, TEST_USER2!, TEST_USER3!, TEST_USER4!],
+        //     gas: 2100000,
+        //     gasPrice: 8000000000
         // },
         // eth_tenderly: {
         //     url: 'https://rpc.tenderly.co/fork/4f3bf762-7876-49a4-92b1-ba5d92e1aaa6',
