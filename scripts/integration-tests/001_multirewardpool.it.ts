@@ -25,6 +25,7 @@ async function fundAccounts(
 ) {
   console.log('Fund accounts');
   // Fund accounts with base txn currency
+  await sendEth(testTokenProvider, owner, BigNumber.from('10000000000000000000')); //10
   await sendEth(testTokenProvider, funder1, BigNumber.from('10000000000000000000')); //10
   await sendEth(testTokenProvider, funder2, BigNumber.from('10000000000000000000'));
   await sendEth(testTokenProvider, staker1, BigNumber.from('10000000000000000000'));
@@ -170,8 +171,13 @@ scenarioParameters.set('matic_tenderly', {
   reward1Address: '0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270', // WMATIC
   reward2Address: '0x0b3f868e0be5597d5db7feb59e1cadbb0fdda50a', // SUSHI
 });
-scenarioParameters.set('matic_tenderly', {
+scenarioParameters.set('bsc_tenderly', {
   stakingTokenAddress: '0xb97560c22a62b9ccb0ee941271300c073973d05a', // WBNB/USDC
+  reward1Address: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // WBNB
+  reward2Address: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC
+});
+scenarioParameters.set('bsc_tenderly_multi_reward', {
+  stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // CAKE
   reward1Address: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // WBNB
   reward2Address: '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC
 });
