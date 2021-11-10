@@ -17,8 +17,7 @@ export const networkIsMain = network.name === 'eth' || network.name === 'bsc' ||
 interface accountConfig {
   deployer: SignerWithAddress; // the create2 deployer
   owner: SignerWithAddress; // the dev/owner
-  relayer: SignerWithAddress;
-  user: SignerWithAddress;
+  testTokenProvider?: SignerWithAddress; // only for !networkIsLocal
   geodeRelayer?: string; // only for !networkIsLocal
 }
 
@@ -27,17 +26,14 @@ export async function getAccounts(): Promise<accountConfig> {
   if (networkIsLocal) {
     return {
       owner: signers[0],
-      relayer: signers[1],
-      user: signers[2],
-      deployer: signers[3],
+      deployer: signers[1],
+      testTokenProvider: signers[2],
     };
   } else {
     return {
       owner: signers[0],
-      relayer: signers[0], // irrelevant
-      user: signers[0], // irrelevant
-      geodeRelayer: RELAYER!,
       deployer: signers[1],
+      geodeRelayer: RELAYER!,
     };
   }
 }
@@ -58,6 +54,17 @@ export async function resetNetwork(jsonRpcUrl?: string, useLatestBlock = false):
       },
     ],
   });
+}
+
+export async function sendEth(from: SignerWithAddress, to: SignerWithAddress, amount: BigNumber) {
+  await from.sendTransaction({
+    to: to.address,
+    value: amount,
+  });
+}
+
+export function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export function sinceNow(seconds: number | BigNumber): BigNumber {
